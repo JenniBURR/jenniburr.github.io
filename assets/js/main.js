@@ -258,4 +258,3 @@
    */
   new PureCounter();
 })();
-
