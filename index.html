@@ -10,7 +10,7 @@
   <meta content="" name="keywords">
 
   <!-- Favicons -->
-  <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/favicon.webp" rel="icon">
   <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
 
   <!-- Google Fonts -->
@@ -38,9 +38,56 @@
 
 <body>
   <!-- ======= Music ======= -->
-  <audio id="background-music" autoplay loop hidden>
+  <audio id="background-music" autoplay loop style="display:none;">
     <source src="assets/music/gudaguda.mp3" type="audio/mpeg">
   </audio><!-- End Music -->
+
+  <div id="music-controls" style="position: fixed; bottom: 20px; left: 20px; background: rgba(255,255,255,0.7); border-radius: 10px; padding: 10px 16px; z-index: 9999; display: flex; align-items: center; gap: 10px; box-shadow: 0 2px 8px rgba(0,0,0,0.08);">
+    <button id="music-pause-btn" style="background: none; border: none; font-size: 18px; cursor: pointer;" aria-label="Pause/Play Music">
+      <span id="music-pause-icon">&#10073;&#10073;</span>
+    </button>
+    <span id="music-title" style="font-size: 14px; color: #333;">gudaguda.mp3</span>
+  </div>
+  <script>
+    const music = document.getElementById('background-music');
+    const pauseBtn = document.getElementById('music-pause-btn');
+    const pauseIcon = document.getElementById('music-pause-icon');
+
+    // Set default volume
+    music.volume = 0.15;
+
+    // Handle autoplay restrictions
+    document.addEventListener('DOMContentLoaded', () => {
+      const playPromise = music.play();
+      if (playPromise !== undefined) {
+        playPromise.catch(() => {
+          pauseIcon.innerHTML = '&#9654;';
+        });
+      }
+    });
+
+    // Pause/Play toggle
+    pauseBtn.addEventListener('click', () => {
+      if (music.paused) {
+        music.play().then(() => {
+          pauseIcon.innerHTML = '&#10073;&#10073;';
+        }).catch(() => {
+          pauseIcon.innerHTML = '&#9654;';
+        });
+      } else {
+        music.pause();
+        pauseIcon.innerHTML = '&#9654;';
+      }
+    });
+
+    // Update icon if user pauses/plays via other means
+    music.addEventListener('play', () => {
+      pauseIcon.innerHTML = '&#10073;&#10073;';
+    });
+    music.addEventListener('pause', () => {
+      pauseIcon.innerHTML = '&#9654;';
+    });
+  </script>
 
   <!-- ======= Header ======= -->
   <header id="header">
@@ -68,7 +115,7 @@
   <!-- ======= Clipart Decoration ======= -->
   <div class="astrid-clipart">
     <img
-          src="assets/img/astrid.png"
+          src="assets/img/astrid.webp"
           alt="astrid holding balloon in the style"
           class="astrid"
           >
@@ -87,7 +134,7 @@
 
       <div class="row">
         <div class="col-lg-4" data-aos="fade-right">
-          <img src="assets/img/me.png" class="img-fluid prank" alt="">
+          <img src="assets/img/me.webp" class="img-fluid prank" alt="">
         </div>
         <div class="col-lg-8 pt-4 pt-lg-0 content" data-aos="fade-left">
           <h3>Freelance Illustrator with Basic IT Skills</h3>
@@ -355,60 +402,162 @@
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/commissions/1.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/commissions/1.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>Mario Airheart</h4>
-                <div class="portfolio-links">
-                  <a href="https://twitter.com/MariHeartPV64/status/1686154659684089856" target="_blank" ><i class="bx bx-link"></i></a>
-                </div>
+                <h4>Mario Airheart 1</h4>
               </div>
             </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/commissions/2-1.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/commissions/spencercomm.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>Mario Airheart</h4>
-                <div class="portfolio-links">
-                  <a href="https://twitter.com/MariHeartPV64/status/1720568305054875682" target="_blank" ><i class="bx bx-link"></i></a>
-                </div>
+                <h4>Spencer Klin Commission</h4>
               </div>
             </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/commissions/mario_mother.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/commissions/rikkacomm1.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>Marios Mother</h4>
-                <div class="portfolio-links">
-                  <a href="https://twitter.com/MariHeartPV64/status/1701620349798867203" target="_blank" ><i class="bx bx-link"></i></a>
-                </div>
+                <h4>Rikka Lockheart Commission</h4>
               </div>
             </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/commissions/bettycomm.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/commissions/2-1.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>Betty Collins</h4>
-                <div class="portfolio-links">
-                  <a href="https://twitter.com/BMcnolen/status/1710693783786950773" target="_blank" ><i class="bx bx-link"></i></a>
-                </div>
+                <h4>Mario Airheart Commission 2</h4>
               </div>
             </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/commissions/bettycomm2-1.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/commissions/bettycomm.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>Betty Collins</h4>
-                <div class="portfolio-links">
-                  <a href="https://twitter.com/BMcnolen/status/1722008375746035961" target="_blank" ><i class="bx bx-link"></i></a>
-                </div>
+                <h4>Betty Collins Commission</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/commissions/oceacomm.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Anime Character Fanart Commission</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/commissions/nikolakecomm.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Nikolake Mermaid Commission</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/commissions/comm1.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4> Game Character Fanart Commission</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/commissions/jolcomm.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Sloth Sticker Commission</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/commissions/queenhomucomm.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>QueenHomu Commission 1</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/commissions/queenhomucomm2-2.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>QueenHomu Commission 2</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/commissions/queenhomucomm3-2.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>QueenHomu Commission 3</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/commissions/20.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Meme Template Commission Peek 1</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/commissions/21.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Meme Template Commission Peek 2</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/commissions/logo-2.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Logo Commission 1</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/commissions/logo-1.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Logo Commission 2</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/commissions/full2.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>FFXIV Character Commission</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-commissions">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/commissions/peachcomm1-2.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Friend Commission (Peachylilies)</h4>
               </div>
             </div>
         </div>
@@ -417,123 +566,153 @@
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-work">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/work-illustration/battlebots.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/work-illustration/battlebots.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>Battle Bots</h4>
-                <div class="portfolio-links">
-                  <a href="https://twitter.com/zarzamoracrc/status/1691216994530390016" target="_blank" ><i class="bx bx-link"></i></a>
-                </div>
+                <h4>Battle Bots Arc</h4>
               </div>
             </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-work">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/work-illustration/chibizarza.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/work-illustration/chibizarza.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>Chibi Zarza</h4>
-                <div class="portfolio-links">
-                  <a href="https://twitter.com/zarzamoracrc/status/1677452041998802945" target="_blank" ><i class="bx bx-link"></i></a>
-                </div>
+                <h4>Chibi Zarza Celebration</h4>
               </div>
             </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-work">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/work-illustration/happyzarza.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/work-illustration/happyzarza.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>Hobby</h4>
-                <div class="portfolio-links">
-                  <a href="https://twitter.com/zarzamoracrc/status/1677816692657758215" target="_blank" ><i class="bx bx-link"></i></a>
-                </div>
+                <h4>Hobby Arc</h4>
               </div>
             </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-work">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/work-illustration/meat1.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/work-illustration/meat1.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>Meat (To Be Posted)</h4>
+                <h4>Meat Arc 1</h4>
               </div>
             </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-work">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/work-illustration/meat2-1.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/work-illustration/meat2-1.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>Meat (To Be Posted)</h4>
+                <h4>Meat Arc 2</h4>
               </div>
             </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-work">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/work-illustration/meat3.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/work-illustration/meat3.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>Meat(To Be Posted)</h4>
+                <h4>Meat Arc 3</h4>
               </div>
             </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-work">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/work-illustration/petroglyph-2.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/work-illustration/meat4.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
-                <h4>Petroglyph</h4>
-                <div class="portfolio-links">
-                  <a href="https://twitter.com/zarzamoracrc/status/1717006142335857070" target="_blank" ><i class="bx bx-link"></i></a>
-                </div>
+                <h4>Meat Arc 4</h4>
               </div>
             </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-work">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/work-illustration/stables-2.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/work-illustration/meat5.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Meat Arc 5</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-work">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/work-illustration/meat6.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Meat Arc 6</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-work">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/work-illustration/petroglyph-2.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Petroglyph Discovery</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-work">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/work-illustration/stables-2.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Valerian Stables</h4>
-                <div class="portfolio-links">
-                  <a href="https://twitter.com/zarzamoracrc/status/1715552508892881244" target="_blank" ><i class="bx bx-link"></i></a>
-                </div>
               </div>
             </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-work">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/work-illustration/zarzadogman1.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/work-illustration/zarzadogman1.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Zarza Dogman Encounter</h4>
-                <div class="portfolio-links">
-                  <a href="https://twitter.com/zarzamoracrc/status/1675665003804852226" target="_blank" ><i class="bx bx-link"></i></a>
-                </div>
               </div>
             </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-work">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/work-illustration/zarzadogman2.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/work-illustration/zarzadogman2.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Zarza Dogman Chase</h4>
-                <div class="portfolio-links">
-                  <a href="https://twitter.com/zarzamoracrc/status/1675672006165970945" target="_blank" ><i class="bx bx-link"></i></a>
-                </div>
               </div>
             </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-work">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/work-illustration/zarzafiendo.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/work-illustration/zarzafiendo.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>Zarza Fiendo</h4>
-                <div class="portfolio-links">
-                  <a href="https://twitter.com/zarzamoracrc/status/1676359528030298112" target="_blank" ><i class="bx bx-link"></i></a>
-                </div>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-work">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/work-illustration/7.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Introduction Arc 1 (SPEC Files)</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-work">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/work-illustration/8.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Introduction Arc 2 (SPEC Files)</h4>
+              </div>
+            </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-work">
+          <div class="portfolio-wrap">
+              <img src="assets/img/portfolio/work-illustration/15.webp" class="img-fluid" alt="">
+              <div class="portfolio-info">
+                <h4>Finale (SPEC Files)</h4>
               </div>
             </div>
         </div>
@@ -542,105 +721,36 @@
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
           <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-1.webp" class="img-fluid" alt="">
+            <img src="assets/img/portfolio/personal-illustration/bonfire.webp" class="img-fluid" alt="">
             <div class="portfolio-info">
               <h4>Autumn Bonfire</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/CRCAstrid/status/1711648670435996022/photo/1" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
             </div>
           </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
           <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/300-2.png" class="img-fluid" alt="">
+            <img src="assets/img/portfolio/personal-illustration/astridsummer.webp" class="img-fluid" alt="">
             <div class="portfolio-info">
-              <h4>Bunny Suit Astrid</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/CRCAstrid/status/1699058531692134566" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
+              <h4>Astrid Summer Uniform</h4>
             </div>
           </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
           <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/astridsummer.png" class="img-fluid" alt="">
+            <img src="assets/img/portfolio/personal-illustration/barbietrendwithglasses.webp" class="img-fluid" alt="">
             <div class="portfolio-info">
-              <h4>Astrid Summer</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/CRCAstrid/status/1676291262805057565" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
+              <h4>Oztrid Barbie Art Trend</h4>
             </div>
           </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
           <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/baby2.png" class="img-fluid" alt="">
+            <img src="assets/img/portfolio/personal-illustration/cottoncandy.webp" class="img-fluid" alt="">
             <div class="portfolio-info">
-              <h4>Baby Siblings</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/CRCAstrid/status/1680023830276845569" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/barbietrendwithglasses.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Barbie Trend</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/CRCAstrid/status/1684464560466796546" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-6.webp" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Bonfire</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/CRCAstrid/status/1687811449069150208" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/chibastrid.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Chibi Astrid</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/jenniburr/status/1723714595691602003" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/clownstrid-2.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Clown Astrid</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/CRCAstrid/status/1710688292373778565" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/cottoncandy.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Cotton Candy</h4>
+              <h4>Cotton Candy Fun Time!</h4>
               <div class="portfolio-links">
                 <a href="https://twitter.com/CRCAstrid/status/1678056420313366528/" target="_blank" ><i class="bx bx-link"></i></a>
               </div>
@@ -650,195 +760,127 @@
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
           <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-8.webp" class="img-fluid" alt="">
+            <img src="assets/img/portfolio/personal-illustration/weddingastrid.webp" class="img-fluid" alt="">
             <div class="portfolio-info">
-              <h4>Crying</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/CRCAstrid/status/1684779349957103616/photo/2" target="_blank" ><i class="bx bx-link"></i></a>  
-              </div>
+              <h4>Wedding Astrid</h4>
             </div>
           </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
           <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-9.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Reunion</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/CRCAstrid/status/1684779349957103616/photo/1" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/doodle.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Doodle</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/jenniburr/status/1712171867203916046/photo/2" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/duel1-2.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Duel Preparation</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/CRCAstrid/status/1715765095794622609" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/duel2-2.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Duel Commence</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/CRCAstrid/status/1715777523848827018" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/eatingtime-3.png" class="img-fluid" alt="">
-            <div class="portfolio-info">
-              <h4>Eating Eyebrows</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/CRCAstrid/status/1718447561000759341" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
-          <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/idiot.png" class="img-fluid" alt="">
+            <img src="assets/img/portfolio/personal-illustration/idiot.webp" class="img-fluid" alt="">
             <div class="portfolio-info">
               <h4>Self Doodle</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/jenniburr/status/1712171867203916046/photo/1" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
             </div>
           </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
           <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/idol3-1.png" class="img-fluid" alt="">
+            <img src="assets/img/portfolio/personal-illustration/sunflowerfield.webp" class="img-fluid" alt="">
             <div class="portfolio-info">
-              <h4>Operation: Get Her Back</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/CrcHopeless/status/1697749877365891238" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
+              <h4>Sunflower Field</h4>
             </div>
           </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
           <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/magnoliatwins.png" class="img-fluid" alt="">
+            <img src="assets/img/portfolio/personal-illustration/takodwellpicnic.webp" class="img-fluid" alt="">
             <div class="portfolio-info">
-              <h4>Magnolia Twins (Not Posted)</h4>
+              <h4>Couple Picnic</h4>
             </div>
           </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
           <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/maidastrid.png" class="img-fluid" alt="">
+            <img src="assets/img/portfolio/personal-illustration/tako-ref-2025.webp" class="img-fluid" alt="">
             <div class="portfolio-info">
-              <h4>Maid Astrid</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/CRCAstrid/status/1680498804833804288" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
+              <h4>Reference Sheet for my OC</h4>
             </div>
           </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
           <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/makistrid2.png" class="img-fluid" alt="">
+            <img src="assets/img/portfolio/personal-illustration/valentines-watermarked.webp" class="img-fluid" alt="">
             <div class="portfolio-info">
-              <h4>Makima Astrid</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/CRCAstrid/status/1682557096808828928/" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
+              <h4>Valentines Day Gift</h4>
             </div>
           </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
           <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/poster2.png" class="img-fluid" alt="">
+            <img src="assets/img/portfolio/personal-illustration/marinachibiheadshot2.webp" class="img-fluid" alt="">
             <div class="portfolio-info">
-              <h4>Poster</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/EmOtsoko_CRC/status/1682061421516050432" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
+              <h4>Chibi Drawing Marina</h4>
             </div>
           </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
           <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/prettyyas2.png" class="img-fluid" alt="">
+            <img src="assets/img/portfolio/personal-illustration/nikroblox.webp" class="img-fluid" alt="">
             <div class="portfolio-info">
-              <h4>Oz Doodle</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/jenniburr/status/1712171867203916046/photo/3" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
+              <h4>Chibi Drawing for Friend</h4>
             </div>
           </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
           <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/roxxy.png" class="img-fluid" alt="">
+            <img src="assets/img/portfolio/personal-illustration/Evil_Neuro.webp" class="img-fluid" alt="">
             <div class="portfolio-info">
-              <h4>Roxxy</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/CRCAstrid/status/1679187112468307968/" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
+              <h4>Evil Neuro Vtuber Fanart</h4>
             </div>
           </div>
         </div>
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
           <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/personal-illustration/weddingastrid.png" class="img-fluid" alt="">
+            <img src="assets/img/portfolio/personal-illustration/madoka-doodle.webp" class="img-fluid" alt="">
             <div class="portfolio-info">
-              <h4>Wedding Astrid (Never Posted)</h4>
+              <h4>Kaname Madoka Fanart Doodle</h4>
             </div>
           </div>
         </div>
 
-                <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
+        <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
           <div class="portfolio-wrap">
-            <img src="assets/img/portfolio/portfolio-3.webp" class="img-fluid" alt="">
+            <img src="assets/img/portfolio/personal-illustration/sakura.webp" class="img-fluid" alt="">
             <div class="portfolio-info">
-              <h4>Punk Astrid</h4>
-              <div class="portfolio-links">
-                <a href="https://twitter.com/CRCAstrid/status/1693776096561705171" target="_blank" ><i class="bx bx-link"></i></a>
-              </div>
+              <h4>Cardcaptor Sakura Fanart Doodle</h4>
             </div>
           </div>
         </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
+          <div class="portfolio-wrap">
+            <img src="assets/img/portfolio/personal-illustration/zarza-1.webp" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Zarza Mora Fanart</h4>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 portfolio-item filter-personal">
+          <div class="portfolio-wrap">
+            <img src="assets/img/portfolio/personal-illustration/v1.webp" class="img-fluid" alt="">
+            <div class="portfolio-info">
+              <h4>Secret Santa Gift for Friend</h4>
+            </div>
+          </div>
+        </div>
+
 
         <!-- Contest Entries -->
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-contest">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/contest-entries/PRC.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/contest-entries/PRC.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>PRC (Winner)</h4>
                 <div class="portfolio-links">
@@ -850,7 +892,7 @@
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-contest">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/contest-entries/CRC.jpg" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/contest-entries/CRC.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>CRC (Runner up)</h4>
                 <div class="portfolio-links">
@@ -862,7 +904,7 @@
 
         <div class="col-lg-4 col-md-6 portfolio-item filter-contest">
           <div class="portfolio-wrap">
-              <img src="assets/img/portfolio/contest-entries/AmeKicks.png" class="img-fluid" alt="">
+              <img src="assets/img/portfolio/contest-entries/AmeKicks.webp" class="img-fluid" alt="">
               <div class="portfolio-info">
                 <h4>AmeKicks (Runner up)</h4>
                 <div class="portfolio-links">

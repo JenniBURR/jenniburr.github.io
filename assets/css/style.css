@@ -20,7 +20,7 @@ body {
 body::before {
   content: "";
   position: fixed;
-  background: #ffffff url("../img/bg.png") top right no-repeat;
+  background: #ffffff url("../img/bg.webp") top right no-repeat;
   background-size: cover;
   left: 0;
   right: 0;
@@ -1257,7 +1257,7 @@ section .container {
 }
 
 .astrid-clipart img:hover {
-  content: url("../img/astrid-hover.png"); /* Replace 'new-image.jpg' with the path to your new image */
+  content: url("../img/astrid-hover.webp"); /* Replace 'new-image.jpg' with the path to your new image */
   animation: vibration 0.3s ease infinite;
 }
 
